@@ -3,6 +3,8 @@
 
 library(tidyverse)
 library(lubridate)
+library(tidymodels)
+library(caret)
 
 
 df <- readxl::read_excel("data.xlsx") %>% janitor::clean_names()
@@ -39,4 +41,3 @@ df <- df %>%
          utlan_hrodun = utlan_breyting - lag(utlan_breyting))
 
 
-write_csv(df, "final_data.csv")
