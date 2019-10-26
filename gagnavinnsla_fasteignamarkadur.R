@@ -39,9 +39,9 @@ df %>%
 df <- df %>% 
   mutate(utlan_breyting = utlan_heimila/lag(utlan_heimila, 12) - 1,
          utlan_hrodun = utlan_breyting - lag(utlan_breyting),
-         d_hus = ibudarhus/lag(ibudarhus) - 1,
-         d_utb = utborgad/lag(utborgad) - 1,
-         d_leiga = greidd_husaleiga/lag(greidd_husaleiga) - 1)
+         d_hus = ibudarhus/lag(ibudarhus, 12) - 1,
+         d_utb = utborgad/lag(utborgad, 12) - 1,
+         d_leiga = greidd_husaleiga/lag(greidd_husaleiga, 12) - 1)
 
 
 write_csv(df, "final_data.csv")
