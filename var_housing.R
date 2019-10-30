@@ -22,21 +22,23 @@ df_var <- df_final %>% dplyr::select(date,
 
 # -------------------------------------------------------------------------
 
-VARselect(df_var[,-1])
-
 house_var <- VAR(df_var[,-1],
                  lag.max = 24,
-                 ic = "SC",
-                 season = 12)
+                 ic = "FPE",
+                 season = 12,
+                 type = "const")
 
-
-house_var_pred <- predict(house_var,
-                          n.ahead = 12)
 
 house_irf <- irf(house_var,
                  response = "d_hus",
                  n.ahead = 12,
                  ortho = FALSE)
 
-
 plot(house_irf)
+
+
+pred <- predict(house_var,
+                n.ahead = 12,
+                response = "d_hus")
+
+plot(pred)
