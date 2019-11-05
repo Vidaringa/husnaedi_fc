@@ -1,9 +1,12 @@
 
 library(tidyverse)
 library(vars)
-
+library(lubridate)
 
 df_final <- read_csv("final_data.csv")
+
+df <- readxl::read_excel("data.xlsx") %>% janitor::clean_names()
+df$date <- ymd(df$date)
 df_na <- df %>% na.omit()
 
 
